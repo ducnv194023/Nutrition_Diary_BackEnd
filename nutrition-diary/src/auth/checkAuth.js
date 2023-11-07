@@ -32,6 +32,26 @@ const apiKey = async (req, res, next) => {
     }
 }
 
+const permissions = (permissions) => {
+    return (req,res,next) => {
+        if (!req.objectKey.permissions) {
+            return res.status(403).json({
+                messages: 'permission denied!!'
+            })
+        }
+
+        const validPermission = req.objectKey.permissions.includes(permissions)
+
+        if (!validPermission) {
+            return res.status(403).json({
+                messages: 'permission denied!!'
+            })
+        }
+
+        return next()
+    }
+}
 module.exports = {
-    apiKey
+    apiKey,
+    permissions,
 }

@@ -16,15 +16,24 @@ app.use(express.urlencoded({ extended: true }))
 // init db
 require('./src/dbs/init.mongodb')
 // init routes
-app.get('/', (req, res, next) => {
-    return res.status(200).json({
-        message: 'Hello world'
-    })
-})
-
 app.use('/nutrition-diary', route)
 // handle error
 
+app.use((req, res, next) => {
+    const error = new Error('Not Found')
+    error.status = 404
+    next(error)
+
+})
+
+app.use((error, req, res, next) => {
+    const status = error.status || 500
+    const message = error.message || 'Internal Server Error'
+    res.status(status).json({
+        code: status,
+        message
+    })
+})
 // init server
 
 module.exports = app

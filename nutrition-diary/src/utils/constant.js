@@ -4,6 +4,7 @@ const RoleApp = {
 }
 
 const StatusCode = {
+    UNAUTHORIZED: 401,
     BAD_REQUEST: 400,
     INTERNAL_SERVER: 500,
     OK: 200,
@@ -11,6 +12,7 @@ const StatusCode = {
 }
 
 const ReasonStatusCode = {
+    UNAUTHORIZED: 'Unauthorized',
     BAD_REQUEST: 'Bad request error',
     INTERNAL_SERVER: 'Internal error',
     OK: 'OK',

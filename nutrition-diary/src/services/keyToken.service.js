@@ -6,13 +6,26 @@ class KeyTokenService {
     static createKeyToken = async ({
         userId,
         publicKey,
+        refreshToken,
     }) => {
         const publicKeyString = publicKey.toString()
 
-        const tokens =  await KeyToken.create({
-            userId,
-            publicKey: publicKeyString
-        })
+        const filter = {
+          user: userId,
+        }
+        
+        const update = {
+          publicKey: publicKeyString,
+          refreshTokensUsed: [],
+          refreshToken
+        }
+
+        const options = {
+          upsert: true,
+          new: true
+        }
+
+        const tokens =  await KeyToken.findOneAndUpdate(filter, update, options)
 
         return tokens ? publicKeyString : null
     }

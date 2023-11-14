@@ -23,8 +23,15 @@ class InternalServerError extends ErrorResponse {
     }
 }
 
+class AuthFailureError extends ErrorResponse {
+    constructor (message = ReasonStatusCode.UNAUTHORIZED, statusCode = StatusCode.UNAUTHORIZED) {
+        super(message, statusCode)
+    }
+}
+
 module.exports = {
     ErrorResponse,
     BadRequestError,
-    InternalServerError
+    InternalServerError,
+    AuthFailureError
 }

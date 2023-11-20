@@ -115,6 +115,12 @@ class AccessService {
 
         throw new BadRequestError('Sign up failed')
     }
+
+    static logout = async (keyStore) => {
+        const delKey = await KeyTokenService.removeKeyById(keyStore._id)
+
+        return delKey
+    }
 }
 
 module.exports = AccessService

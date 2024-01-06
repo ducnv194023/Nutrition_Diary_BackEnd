@@ -7,31 +7,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  email: {
-    type: String,
-    required: false,
-    trim: true
-  },
-  age: {
-    type: Number,
-    required: false,
-  },
-  gender: {
-    type: String,
-    required: false,
-  },
-  weight: {
-    type: Number,
-    required: false,
-  },
-  height: {
-    type: Number,
-    required: false,
-  },
-  goalWeight: {
-    type: Number,
-    required: false,
-  },
   phone: {
     type: String,
     required: true,

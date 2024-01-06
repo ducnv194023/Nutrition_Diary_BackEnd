@@ -18,8 +18,18 @@ const UserMsg = {
   notCorrectPassword: 'Mật khẩu không đúng'
 }
 
+const SystemMsg = {
+  successLogin: 'Đăng nhập thành công',
+  successRegister: 'Đăng kí thành công',
+  successLogout: 'Đăng xuất thành công',
+  joiWrongFormatErroMsg: '"{{#label}}" sai định dạng',
+  passwordFailedLength: 'Mật khẩu ít nhất đạt 8 ký tự',
+  passwordFailedMixCharacterCondition: 'Mật khẩu phải chứa ít nhất 1 chữ cái và 1 số'
+}
+
 module.exports = {
   UserMsg,
   foodMsg,
   exerciseMsg,
+  SystemMsg
 }

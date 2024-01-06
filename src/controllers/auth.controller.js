@@ -10,7 +10,6 @@ const register = catchAsync(async (req, res) => {
 
 const login = catchAsync(async (req, res) => {
     const user = await authService.loginUser(req.body, res);
-    console.log(user);
     sendSuccess({ res, data: user, message: SystemMsg.successLogin });
 });
 

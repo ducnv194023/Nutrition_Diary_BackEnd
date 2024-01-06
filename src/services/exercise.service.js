@@ -6,10 +6,11 @@ const pick = require('../utils/pick')
 const { throwBadRequest } = require('../utils/badRequestHandlingUtils')
 
 // create exercise
-const createExercise = async (ExerciseBody) => {
+const createExercise = async (exerciseBody) => {
   // check exist
+
   const existedExercise = await Exercise.findOne({
-    name: _.get(ExerciseBody, 'name'),
+    name: _.get(exerciseBody, 'name'),
     status: {
       $ne: status.disabled
     }
@@ -17,7 +18,7 @@ const createExercise = async (ExerciseBody) => {
 
   throwBadRequest(existedExercise, Message.exerciseMsg.nameExisted)
 
-  const Exercise = pick(ExerciseBody, [
+  const exercise = pick(exerciseBody, [
     'name',
     'description',
     'image',
@@ -25,7 +26,7 @@ const createExercise = async (ExerciseBody) => {
     'exerciseTime'
   ])
 
-  return Exercise.create(Exercise)
+  return Exercise.create(exercise)
 }
 
 // lấy tất cả bài tập

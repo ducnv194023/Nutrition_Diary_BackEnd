@@ -10,6 +10,23 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  image: {
+    type: String,
+    required: false,
+  },
+  exerciseTime: {
+    type: Number,
+    required: true,
+  },
+  calories: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['enabled', 'disabled'],
+    default: 'enabled'
+  },
 }, {
   timestamps: true
 })

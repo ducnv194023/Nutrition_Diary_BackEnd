@@ -18,6 +18,7 @@ const createFood = async (foodBody) => {
   throwBadRequest(existedFood, Message.foodMsg.nameExisted)
 
   const food = pick(foodBody, [
+    'userId',
     'name',
     'brand',
     'description',
@@ -38,7 +39,9 @@ const createFood = async (foodBody) => {
 
 // lấy tất cả món ăn
 const getFoods = async (requestBody) => {
+  const userId = _.get(requestBody, 'userId')
   const filter = {}
+  filter.userId = userId
   if (!filter.status) {
     filter.status = {
       $ne: status.disabled

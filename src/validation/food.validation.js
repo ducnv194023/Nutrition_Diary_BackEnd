@@ -2,6 +2,7 @@ const Joi = require('joi')
 const { objectId } = require('./custom.validation')
 
 const createFood = Joi.object().keys({
+  userId: Joi.required().custom(objectId),
   name: Joi.string().required(),
   calories: Joi.number().required(),
   description: Joi.string(),
@@ -15,6 +16,10 @@ const createFood = Joi.object().keys({
   fiber: Joi.number(),
   sugar: Joi.number(),
   saturatedFat: Joi.number(),
+})
+
+const getFoods = Joi.object().keys({
+  userId: Joi.required().custom(objectId),
 })
 
 const updateFood = {
@@ -38,5 +43,6 @@ const updateFood = {
 
 module.exports = {
   createFood,
+  getFoods,
   updateFood,
 }

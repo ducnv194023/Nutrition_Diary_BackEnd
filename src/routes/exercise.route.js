@@ -10,12 +10,12 @@ const router = Router()
 router.route('/').post(auth, validate(exerciseValidation.createExercise), exerciseController.createExercise)
 
 // Lấy ra tất cả bài tập
-router.route('/').get(auth, exercise.getExercises)
+router.route('/').get(auth, exerciseController.getExercises)
 
 router.route('/:exerciseId')
 // Cập nhật món ăn
   .patch(auth, validate(exerciseValidation.updateExercise), exerciseController.updateExerciseById)
 // Xóa một món ăn
-  .delete(auth, exercise.deleteExerciseById)
+  .delete(auth, exerciseController.deleteExerciseById)
 
 module.exports = router

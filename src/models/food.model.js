@@ -68,6 +68,6 @@ const foodSchema = new mongoose.Schema({
   timestamps: true
 })
 
-const Food = mongoose.model('User', foodSchema)
+const Food = mongoose.model('Food', foodSchema)
 
 module.exports = Food

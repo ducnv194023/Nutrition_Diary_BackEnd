@@ -20,6 +20,8 @@ const createGoal = async (goalBody) => {
 // lấy mục tiêu
 const getGoal = async (requestBody) => {
   const filter = {}
+  const userId = _.get(requestBody, 'userId')
+  filter.userId = mongoose.Types.ObjectId(userId)
   if (!filter.status) {
     filter.status = {
       $ne: status.disabled

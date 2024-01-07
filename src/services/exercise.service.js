@@ -68,18 +68,6 @@ const deleteExerciseById = async (exerciseId) => {
 
 // create user exercise
 const createUserExercise = async (userExerciseBody) => {
-  // check exist
-
-  const existedUserExercise = await UserExercise.findOne({
-    userId: _.get(userExerciseBody, 'userId'),
-    exerciseId: _.get(userExerciseBody, 'exerciseId'),
-    status: {
-      $ne: status.disabled
-    }
-  })
-
-  throwBadRequest(existedUserExercise, Message.exerciseMsg.nameExisted)
-
   const userExercise = pick(userExerciseBody, [
     'userId',
     'exerciseId',

@@ -11,7 +11,7 @@ router.route('/').post(auth, validate(goalValidation.createGoal), goalController
 
 
 // Lấy ra mục tiêu
-router.route('/').get(auth, validate(goalValidation.getGoal), goalController.getGoal)
+router.route('/').post(auth, validate(goalValidation.getGoal), goalController.getGoal)
 
 router.route('/:goalId')
 // Cập nhật mục tiêu

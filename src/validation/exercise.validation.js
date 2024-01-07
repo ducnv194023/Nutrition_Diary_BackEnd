@@ -16,7 +16,6 @@ const createExercise = Joi.object().keys({
 
 const getUserExercises = {
   body: Joi.object().keys({
-    exerciseId: Joi.required().custom(objectId),
     userId: Joi.required().custom(objectId),
     date: Joi.number().required(),
   })

@@ -34,10 +34,17 @@ const SystemMsg = {
   passwordFailedMixCharacterCondition: 'Mật khẩu phải chứa ít nhất 1 chữ cái và 1 số'
 }
 
+const goalMsg = {
+  notFound: 'Không thể tìm thấy mục tiêu',
+  created: 'Tạo mục tiêu thành công',
+  success: 'Thành công'
+}
+
 module.exports = {
   UserMsg,
   foodMsg,
   exerciseMsg,
   SystemMsg,
-  mealDiaryMsg
+  mealDiaryMsg,
+  goalMsg
 }

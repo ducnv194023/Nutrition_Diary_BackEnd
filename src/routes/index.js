@@ -10,6 +10,6 @@ router.use('/auth', AuthRouter)
 router.use('/food', FoodRouter)
 router.use('/exercise', ExerciseRouter)
 router.use('/mealDiary', MealDiaryRouter)
-router.use('goal', GoalRouter)
+router.use('/goal', GoalRouter)
 
 module.exports = router

@@ -10,7 +10,7 @@ const router = Router()
 router.route('/').post(auth, validate(foodValidation.createFood), foodController.createFood)
 
 // Lấy ra tất cả món ăn
-router.route('/').get(auth, validate(foodValidation.getFoods), foodController.getFoods)
+router.route('/').post(auth, validate(foodValidation.getFoods), foodController.getFoods)
 
 router.route('/:foodId')
 // Cập nhật món ăn

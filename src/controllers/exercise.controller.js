@@ -24,8 +24,20 @@ const deleteExerciseById = catchAsync(async (req, res) => {
   sendSuccess({ res, message: Message.exerciseMsg.success })
 })
 
+const createUserExercise = catchAsync(async (req, res) => {
+  const newUserExercise = await exerciseService.createUserExercise(req.body)
+  sendSuccess({ res, data: newUserExercise, message: Message.exerciseMsg.created })
+})
+
+const getUserExercises = catchAsync(async (req, res) => {
+  const userExercises = await exerciseService.getUserExercises(req.body)
+  sendSuccess({ res, data: userExercises, message: Message.exerciseMsg.success })
+})
+
 module.exports = {
     createExercise,
+    createUserExercise,
+    getUserExercises,
     getExercises,
     updateExerciseById,
     deleteExerciseById,

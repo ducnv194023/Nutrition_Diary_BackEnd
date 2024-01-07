@@ -1,6 +1,11 @@
 const Joi = require('joi')
 const { objectId } = require('./custom.validation')
 
+const createUserExercise = Joi.object().keys({
+  userId: Joi.required().custom(objectId),
+  exerciseId: Joi.required().custom(objectId),
+})
+
 const createExercise = Joi.object().keys({
   name: Joi.string().required(),
   calories: Joi.number().required(),
@@ -9,6 +14,12 @@ const createExercise = Joi.object().keys({
   exerciseTime: Joi.number().required(),
 })
 
+const getUserExercises = {
+  body: Joi.object().keys({
+    exerciseId: Joi.required().custom(objectId),
+    userId: Joi.required().custom(objectId),
+  })
+}
 const updateExercise = {
   body: Joi.object().keys({
     exerciseId: Joi.required().custom(objectId),
@@ -21,6 +32,8 @@ const updateExercise = {
 }
 
 module.exports = {
+    createUserExercise,
+    getUserExercises,
     createExercise,
     updateExercise,
 }

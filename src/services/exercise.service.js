@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const Exercise = require('../models/exercise.model')
+const UserExercise = require('../models/userExercise.model')
 const Message = require('../utils/Message')
 const { status } = require('../utils/constant')
 const pick = require('../utils/pick')
@@ -64,8 +65,44 @@ const deleteExerciseById = async (exerciseId) => {
   return deleteExercise
 }
 
+// create user exercise
+const createUserExercise = async (userExerciseBody) => {
+  // check exist
+
+  const existedUserExercise = await UserExercise.findOne({
+    userId: _.get(userExerciseBody, 'userId'),
+    exerciseId: _.get(userExerciseBody, 'exerciseId'),
+    status: {
+      $ne: status.disabled
+    }
+  })
+
+  throwBadRequest(existedUserExercise, Message.exerciseMsg.nameExisted)
+
+  const userExercise = pick(userExerciseBody, [
+    'userId',
+    'exerciseId',
+  ])
+
+  return UserExercise.create(userExercise)
+}
+
+const getUserExercises = async (requestBody) => {
+  const filter = {}
+  filter.userId = _.get(requestBody, 'userId')
+  if (!filter.status) {
+    filter.status = {
+      $ne: status.disabled
+    }
+  }
+
+  return UserExercise.find({ ...filter })
+}
+
 module.exports = {
   createExercise,
+  createUserExercise,
+  getUserExercises,
   getExercises,
   updateExerciseById,
   deleteExerciseById,

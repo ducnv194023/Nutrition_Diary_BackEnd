@@ -12,6 +12,13 @@ const exerciseMsg = {
   success: 'Thành công'
 }
 
+const mealDiaryMsg = {
+  nameExisted: 'Món ăn đã tồn tại trong thực đơn',
+  notFound: 'Không thể tìm thấy món ăn',
+  created: 'Thêm món ăn thành công vào trong thực đơn',
+  success: 'Thành công'
+}
+
 const UserMsg = {
   phoneExisted: 'Số điện thoại đã tồn tại',
   notFound: 'Số điện thoại không tồn tại',
@@ -31,5 +38,6 @@ module.exports = {
   UserMsg,
   foodMsg,
   exerciseMsg,
-  SystemMsg
+  SystemMsg,
+  mealDiaryMsg
 }

@@ -13,7 +13,7 @@ const foodSchema = new mongoose.Schema({
   },
   brand: {
     type: String,
-    required: true,
+    required: false,
   },
   description: {
     type: String,

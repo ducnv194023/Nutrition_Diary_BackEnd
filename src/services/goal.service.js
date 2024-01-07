@@ -8,6 +8,14 @@ const { throwBadRequest } = require('../utils/badRequestHandlingUtils')
 
 // create Goal
 const createGoal = async (goalBody) => {
+  // check exist
+  const existedGoal = await Goal.findOne({
+    userId: _.get(foodBody, 'userId'),
+    status: {
+        $ne: status.disabled
+    }
+  })
+
   const goal = pick(goalBody, [
     'userId',
     'currentGoal',

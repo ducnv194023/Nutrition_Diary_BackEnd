@@ -16,6 +16,14 @@ const userExerciseSchema = new mongoose.Schema({
     enum: ['enabled', 'disabled'],
     default: 'enabled'
   },
+  userCalories: {
+    type: Number,
+    required: false,
+  },
+  userExerciseTime: {
+    type: Number,
+    required: false,
+  },
 }, {
   timestamps: true
 })

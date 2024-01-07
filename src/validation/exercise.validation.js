@@ -4,6 +4,8 @@ const { objectId } = require('./custom.validation')
 const createUserExercise = Joi.object().keys({
   userId: Joi.required().custom(objectId),
   exerciseId: Joi.required().custom(objectId),
+  userCalories: Joi.number(),
+  userExerciseTime: Joi.number()
 })
 
 const createExercise = Joi.object().keys({

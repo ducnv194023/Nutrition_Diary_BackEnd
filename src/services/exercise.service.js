@@ -83,6 +83,8 @@ const createUserExercise = async (userExerciseBody) => {
   const userExercise = pick(userExerciseBody, [
     'userId',
     'exerciseId',
+    'userCalories',
+    'userExerciseTime',
   ])
 
   return UserExercise.create(userExercise)

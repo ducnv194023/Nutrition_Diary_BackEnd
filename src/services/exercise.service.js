@@ -91,6 +91,11 @@ const createUserExercise = async (userExerciseBody) => {
 const getUserExercises = async (requestBody) => {
   const filter = {}
   filter.userId = mongoose.Types.ObjectId(_.get(requestBody, 'userId'))
+  const date = _.get(requestBody, 'date')
+  filter.createdAt = {
+    $gte: new Date(date),
+    $lt: new Date(date + 24 * 60 * 60 * 1000)
+  }
   if (!filter.status) {
     filter.status = {
       $ne: status.disabled

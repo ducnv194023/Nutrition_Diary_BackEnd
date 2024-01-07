@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const mongoose = require('mongoose')
 const Exercise = require('../models/exercise.model')
 const UserExercise = require('../models/userExercise.model')
 const Message = require('../utils/Message')
@@ -89,14 +90,31 @@ const createUserExercise = async (userExerciseBody) => {
 
 const getUserExercises = async (requestBody) => {
   const filter = {}
-  filter.userId = _.get(requestBody, 'userId')
+  filter.userId = mongoose.Types.ObjectId(_.get(requestBody, 'userId'))
   if (!filter.status) {
     filter.status = {
       $ne: status.disabled
     }
   }
 
-  return UserExercise.find({ ...filter })
+  return UserExercise.aggregate([
+    {
+      $match: {
+        ...filter,
+      },
+    },
+    {
+      $lookup: {
+        from: 'exercises', // Tên bảng "Exercise"
+        localField: 'exerciseId',
+        foreignField: '_id',
+        as: 'exercise', // Đặt tên mảng kết quả là "exercise"
+      },
+    },
+    {
+      $unwind: '$exercise', // Bỏ mảng và chuyển nó thành tài liệu riêng lẻ
+    },
+  ])
 }
 
 module.exports = {

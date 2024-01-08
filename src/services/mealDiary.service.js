@@ -5,12 +5,16 @@ const Message = require('../utils/Message')
 const { status } = require('../utils/constant')
 const pick = require('../utils/pick')
 const { throwBadRequest } = require('../utils/badRequestHandlingUtils')
-
+const { getStartOfDay } = require('../utils/getTime')
 // create MealDiary
 const createMealDiary = async (mealDiaryBody) => {
   // check exist
-
+  const startOfDay = getStartOfDay()
   const existedMealDiary = await MealDiary.findOne({
+    createdAt: {
+      $gte: startOfDay,
+      $lt: new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000)
+    },
     foodId: _.get(mealDiaryBody, 'foodId'),
     diaryType: _.get(mealDiaryBody, 'diaryType'),
     status: {

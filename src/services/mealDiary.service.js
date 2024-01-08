@@ -36,7 +36,6 @@ const createMealDiary = async (mealDiaryBody) => {
 
 // lấy tất cả món ăn theo loại thực đơn 
 const getMealDiariesByType = async (requestBody) => {
-  console.log('11111')
   const filter = {}
   const userId = _.get(requestBody, 'userId')
   const diaryType = _.get(requestBody, 'diaryType')
@@ -47,7 +46,6 @@ const getMealDiariesByType = async (requestBody) => {
   }
   filter.diaryType = diaryType
   filter.userId = mongoose.Types.ObjectId(userId)
-  console.log(filter)
   if (!filter.status) {
     filter.status = {
       $ne: status.disabled
